@@ -11,7 +11,7 @@ COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Make port 8050 available to the outside world (adjust if needed)
-EXPOSE 8050
+EXPOSE 80
 
 # Run app.py with Gunicorn
-CMD ["gunicorn", "-b", "0.0.0.0:8050", "app:server"]
+CMD ["gunicorn", "-b", "0.0.0.0:80", "app:server"]
