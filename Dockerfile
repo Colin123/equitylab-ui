@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 443
 
 # Run app.py with Gunicorn
-CMD ["gunicorn", "-b", "0.0.0.0:443", "app:server"]
+CMD ["gunicorn", "-b", "equitylab.recursa.biz:443", "app:server"]
