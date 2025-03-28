@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 80
 
 # Run app.py with Gunicorn
-CMD ["gunicorn", "-b", "0.0.0.0:443", "app:server"]
+CMD ["gunicorn", "-b", "0.0.0.0:80", "app:server"]
