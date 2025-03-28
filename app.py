@@ -33,4 +33,4 @@ def hello():
 
 # Run the app locally (for local testing)
 if __name__ == "__main__":
-    app.run_server(debug=True, host="0.0.0.0", port=443)
+    app.run_server(debug=True, host="equitylab.recursa.biz", port=443)
