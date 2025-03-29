@@ -29,6 +29,7 @@ app.layout = html.Div([
 # Define the /health endpoint on the Flask server (not on the Dash app)
 @server.route('/health', methods=['GET'])
 def health():
+    print('health check called')
     return jsonify(status="healthy"), 200 
 
 
