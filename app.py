@@ -21,11 +21,11 @@ app.layout = html.Div([
     )
 ])
 
-# Redirect HTTP to HTTPS (Optional)
-@server.before_request
-def enforce_https():
-    if not flask.request.is_secure and flask.request.headers.get("X-Forwarded-Proto", "") != "https":
-        return flask.redirect(flask.request.url.replace("http://", "https://"), code=301)
+# # Redirect HTTP to HTTPS (Optional)
+# @server.before_request
+# def enforce_https():
+#     if not flask.request.is_secure and flask.request.headers.get("X-Forwarded-Proto", "") != "https":
+#         return flask.redirect(flask.request.url.replace("http://", "https://"), code=301)
 
 if __name__ == "__main__":
     # Use your custom SSL certificate and key for HTTPS
