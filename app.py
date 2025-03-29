@@ -45,10 +45,9 @@ if __name__ == "__main__":
     app.run_server(
         debug=False,
         host="0.0.0.0",
-        port=443
-        #,
-        # ssl_context=(
-        #     "/etc/ssl/certs/recursa_biz.cert",  # Certificate file
-        #     "/etc/ssl/certs/recursa_biz.key"    # Private key file
-        # )
+        port=443,
+        ssl_context=(
+            "/etc/ssl/certs/recursa_biz.cert",  # Certificate file
+            "/etc/ssl/certs/recursa_biz.key"    # Private key file
+        )
     )
