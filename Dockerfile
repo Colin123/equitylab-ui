@@ -2,7 +2,7 @@
 FROM python:3.9-slim
 
 # Create a directory for SSL certificates inside the container
-RUN mkdir -p /etc/ssl/certs/
+# RUN mkdir -p /etc/ssl/certs/
 
 # Copy your project files and install dependencies
 WORKDIR /app
@@ -10,7 +10,7 @@ COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose HTTPS port (8050 in this example)
-EXPOSE 8050
+EXPOSE 443
 
 # Start the app using Gunicorn with your SSL certificate and key
-CMD ["gunicorn", "-b", "0.0.0.0:8050", "--certfile=/etc/ssl/certs/recursa_biz.cert", "--keyfile=/etc/ssl/certs/recursa_biz.key", "app:server"]
+CMD ["gunicorn", "-b", "0.0.0.0:443", "--certfile=/etc/ssl/certs/recursa_biz.cert", "--keyfile=/etc/ssl/certs/recursa_biz.key", "app:server"]
