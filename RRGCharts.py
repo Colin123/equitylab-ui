@@ -560,7 +560,8 @@ class RRGCharts:
 
 if __name__ == '__main__':
     rrg_charts = RRGCharts()
-    rrg_charts.app.run_server(debug=True)
+    # rrg_charts.app.run_server(debug=True)
+    rrg_charts.app.run(debug=True)
 
 
 # Create an instance of the RRGCharts class
