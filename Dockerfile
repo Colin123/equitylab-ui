@@ -22,5 +22,5 @@ CMD ["gunicorn", "-b", "0.0.0.0:8050", "--access-logfile=-", "app:server"]
 RUN apt-get update && apt-get install -y curl
 
 HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
-CMD curl -f http://0.0.0.0:443/health || exit 1
+CMD curl -f http://0.0.0.0:8050/health || exit 1
 
