@@ -13,8 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 443
 
 # Start the app using Gunicorn with your SSL certificate and key
-# CMD ["gunicorn", "-b", "0.0.0.0:443", "--certfile=/etc/ssl/certs/recursa_biz.cert", "--keyfile=/etc/ssl/certs/recursa_biz.key", "app:server"]
-CMD ["gunicorn", "-b", "0.0.0.0:443", "app:server"]
+CMD ["gunicorn", "-b", "0.0.0.0:443", "--certfile=/etc/ssl/certs/recursa_biz.cert", "--keyfile=/etc/ssl/certs/recursa_biz.key", "app:server"]
+# CMD ["gunicorn", "-b", "0.0.0.0:443", "app:server"]
 
 RUN apt-get update && apt-get install -y curl
 
