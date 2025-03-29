@@ -47,7 +47,8 @@ class RRGCharts:
         self.app = Dash(__name__, server=self.server, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
         self.app.title = "Recursa Regime Analysis"
 
-        self.init_equity_list()
+        # FIXME DATA
+        # self.init_equity_list()
 
         # In a specific order so I can see cyclicals in one column and defensives in another
         self.sector_mapping = [
@@ -186,7 +187,6 @@ class RRGCharts:
         def health():
             print('Health check called')
             return jsonify(status="healthy"), 200 
-
 
         @self.server.route('/callback')
         def callback_handling():
