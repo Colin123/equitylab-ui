@@ -2,16 +2,13 @@ import dash
 from dash import html, dcc
 import flask
 
-# Set up Flask server for Dash app
-server = flask.Flask(__name__)  # Required for Gunicorn
-
-# Create Dash app instance
+# Flask server setup
+server = flask.Flask(__name__)
 app = dash.Dash(__name__, server=server, suppress_callback_exceptions=True)
 
-# Define layout for the Dash app
+# Dash layout
 app.layout = html.Div([
-    html.H1("Welcome to My Cool Dash App!", style={"textAlign": "center"}),
-
+    html.H1("Welcome to My SSL-Enabled Dash App!", style={"textAlign": "center"}),
     dcc.Graph(
         id='example-graph',
         figure={
@@ -19,18 +16,25 @@ app.layout = html.Div([
                 {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar', 'name': 'Example Bar Chart'},
                 {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'line', 'name': 'Example Line Chart'},
             ],
-            'layout': {
-                'title': 'Dash Plot Example'
-            }
+            'layout': {'title': 'Dash Plot Example'}
         }
     )
 ])
 
-# Add a simple Flask route (Optional)
-@server.route("/hello")
-def hello():
-    return "Hello from Flask!"
+# Redirect HTTP to HTTPS (Optional)
+@server.before_request
+def enforce_https():
+    if not flask.request.is_secure and flask.request.headers.get("X-Forwarded-Proto", "") != "https":
+        return flask.redirect(flask.request.url.replace("http://", "https://"), code=301)
 
-# Run the app locally (for local testing)
 if __name__ == "__main__":
-    app.run_server(debug=True, host="0.0.0.0", port=80)
+    # Run the app with SSL certificates for HTTPS
+    app.run_server(
+        debug=False,
+        host="0.0.0.0",
+        port=8050,
+        ssl_context=(
+            "/path/to/fullchain.pem",  # Full chain SSL certificate file
+            "/path/to/privkey.pem"    # Private key file
+        )
+    )
