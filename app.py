@@ -1,6 +1,7 @@
 import dash
 from dash import html, dcc
 import flask
+from flask import jsonify
 
 # Flask server setup
 server = flask.Flask(__name__)
