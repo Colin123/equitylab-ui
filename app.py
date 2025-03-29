@@ -42,12 +42,13 @@ def health():
 
 if __name__ == "__main__":
     # Use your custom SSL certificate and key for HTTPS
-    app.run_server(
-        debug=False,
-        host="0.0.0.0",
-        port=443,
-        ssl_context=(
-            "/etc/ssl/certs/recursa_biz.cert",  # Certificate file
-            "/etc/ssl/certs/recursa_biz.key"    # Private key file
-        )
-    )
+    app.run_server(debug=False)
+    # app.run_server(
+    #     debug=False,
+    #     host="0.0.0.0",
+    #     port=443,
+    #     ssl_context=(
+    #         "/etc/ssl/certs/recursa_biz.cert",  # Certificate file
+    #         "/etc/ssl/certs/recursa_biz.key"    # Private key file
+    #     )
+    # )
