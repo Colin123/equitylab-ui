@@ -9,7 +9,7 @@ import re
 import logging
 import dash_bootstrap_components as dbc
 
-from flask import Flask, redirect, request, session, url_for
+from flask import Flask, redirect, request, session, url_for, jsonify
 from authlib.integrations.flask_client import OAuth
 from functools import wraps
 from urllib.parse import urlencode
@@ -181,6 +181,12 @@ class RRGCharts:
         @self.server.route('/login')
         def login():
             return self.auth0.authorize_redirect(redirect_uri=AUTH0_CALLBACK_URL)
+        
+        @self.server.route('/health', methods=['GET'])
+        def health():
+            print('Health check called')
+            return jsonify(status="healthy"), 200 
+
 
         @self.server.route('/callback')
         def callback_handling():
