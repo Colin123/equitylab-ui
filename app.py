@@ -28,13 +28,13 @@ def enforce_https():
         return flask.redirect(flask.request.url.replace("http://", "https://"), code=301)
 
 if __name__ == "__main__":
-    # Run the app with SSL certificates for HTTPS
+    # Use your custom SSL certificate and key for HTTPS
     app.run_server(
         debug=False,
         host="0.0.0.0",
         port=8050,
         ssl_context=(
-            "/path/to/fullchain.pem",  # Full chain SSL certificate file
-            "/path/to/privkey.pem"    # Private key file
+            "/etc/ssl/certs/recursa_biz.cert",  # Certificate file
+            "/etc/ssl/certs/recursa_biz.key"    # Private key file
         )
     )
