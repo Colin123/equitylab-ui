@@ -21,6 +21,10 @@ app.layout = html.Div([
     )
 ])
 
+@app.route('/health', methods=['GET'])
+def health():
+    return jsonify(status="healthy"), 200 
+    
 # # Redirect HTTP to HTTPS (Optional)
 # @server.before_request
 # def enforce_https():
