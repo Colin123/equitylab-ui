@@ -7,7 +7,7 @@ FROM python:3.9-slim
 RUN apt-get update && apt-get install -y curl
 
 HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
-CMD curl -f http://localhost:8001/health || exit 1
+CMD curl -f http://localhost:8050/health || exit 1
 
 # Copy your project files and install dependencies
 WORKDIR /app
