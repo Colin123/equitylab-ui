@@ -14,6 +14,13 @@ from authlib.integrations.flask_client import OAuth
 from functools import wraps
 from urllib.parse import urlencode
 
+# Auth0 configuration
+AUTH0_CLIENT_ID = os.environ.get("AUTH0_CLIENT_ID")
+AUTH0_CLIENT_SECRET = os.environ.get("AUTH0_CLIENT_SECRET")
+AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN")
+AUTH0_CALLBACK_URL = os.environ.get("AUTH0_CALLBACK_URL")
+AUTH0_AUDIENCE = os.environ.get("AUTH0_AUDIENCE") 
+
 class RRGCharts:
 
     def __init__(self):
@@ -21,13 +28,6 @@ class RRGCharts:
         self.server = Flask(__name__)
         self.server.secret_key = os.environ.get("SECRET_KEY") or "your-secret-key"  # Replace with a real secret key in production
         self.oauth = OAuth(self.server)
-
-        # Auth0 configuration
-        AUTH0_CLIENT_ID = os.environ.get("AUTH0_CLIENT_ID")
-        AUTH0_CLIENT_SECRET = os.environ.get("AUTH0_CLIENT_SECRET")
-        AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN")
-        AUTH0_CALLBACK_URL = os.environ.get("AUTH0_CALLBACK_URL")
-        AUTH0_AUDIENCE = os.environ.get("AUTH0_AUDIENCE") 
 
         # Register Auth0 client
         self.auth0 = self.oauth.register(
@@ -370,7 +370,7 @@ class RRGCharts:
             elif button_id == 'industry-overview-btn':
                 return self.industry_overview_layout()
             elif pathname == '/login':
-                return dcc.Location(pathname='/login', id='login-redirect', href=self.auth0.authorize_redirect(redirect_uri=self.AUTH0_CALLBACK_URL))
+                return dcc.Location(pathname='/login', id='login-redirect', href=self.auth0.authorize_redirect(redirect_uri=AUTH0_CALLBACK_URL))
             elif pathname == '/callback':
                 self.auth0.authorize_access_token()
                 resp = self.auth0.get('userinfo')
