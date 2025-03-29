@@ -2,3 +2,5 @@ dash
 flask
 gunicorn
 authlib
+dash_bootstrap_components
+pandas
