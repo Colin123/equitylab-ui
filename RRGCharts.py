@@ -1,5 +1,5 @@
 from dash import Dash, html, dcc, Input, Output, callback
-import dash.dash_table.Format as Format
+from dash import dash_table
 from dash import callback_context
 import pandas as pd
 import plotly.graph_objects as go
@@ -370,7 +370,7 @@ class RRGCharts:
             elif button_id == 'industry-overview-btn':
                 return self.industry_overview_layout()
             elif pathname == '/login':
-                return dcc.Location(pathname='/login', id='login-redirect', href=self.auth0.authorize_redirect(redirect_uri=AUTH0_CALLBACK_URL))
+                return dcc.Location(pathname='/login', id='login-redirect', href=self.auth0.authorize_redirect(redirect_uri=self.AUTH0_CALLBACK_URL))
             elif pathname == '/callback':
                 self.auth0.authorize_access_token()
                 resp = self.auth0.get('userinfo')
